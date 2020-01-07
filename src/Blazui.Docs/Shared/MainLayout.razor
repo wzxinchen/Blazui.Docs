@@ -1,9 +1,30 @@
 ﻿@inherits LayoutComponentBase
 
 <BPopup></BPopup>
-<BLayout>
+<BLayout WestWidth="300">
     <West>
-        组件菜单
+        <BMenu Collapse="false">
+            <BMenuItem>
+                <BDropDown Style="text-align:right;">
+                    <Trigger>
+                        <span class="el-dropdown-link">
+                            版本  <i class="el-icon-arrow-down el-icon--right"></i>
+                        </span>
+                    </Trigger>
+                    <Items>
+                        <BDropDownItem>0.0.6.2</BDropDownItem>
+                        <BDropDownItem>0.0.6.1</BDropDownItem>
+                    </Items>
+                </BDropDown>
+            </BMenuItem>
+            <BSubMenu Label="开发指南">
+                <BMenuItem>快速上手</BMenuItem>
+            </BSubMenu>
+            <BSubMenu Label="基础组件">
+                <BMenuItem>Button 按钮</BMenuItem>
+                <BMenuItem>Radio 单选框</BMenuItem>
+            </BSubMenu>
+        </BMenu>
     </West>
     <North>
         <div class="nav">
@@ -17,12 +38,13 @@
                         <BDropDown Style="display:flex;">
                             <Trigger>
                                 <span class="el-dropdown-link" style="vertical-align:auto;color:#fff;">
-                                    版本 0.0.6.2  <i class="el-icon-arrow-down el-icon--right" style="color:#fff;"></i>
+                                    Blazui  <i class="el-icon-arrow-down el-icon--right" style="color:#fff;"></i>
                                 </span>
                             </Trigger>
                             <Items>
-                                <BDropDownItem>0.0.6.2</BDropDownItem>
-                                <BDropDownItem>0.0.6.1</BDropDownItem>
+                                <BDropDownItem>Blazui</BDropDownItem>
+                                <BDropDownItem>BlazAdmin</BDropDownItem>
+                                <BDropDownItem>Blazui.Markdown</BDropDownItem>
                             </Items>
                         </BDropDown>
                     </BMenuItem>
@@ -31,6 +53,5 @@
         </div>
     </North>
     <Center>
-        文档内容
     </Center>
 </BLayout>
