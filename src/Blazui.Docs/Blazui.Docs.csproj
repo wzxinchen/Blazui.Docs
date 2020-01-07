@@ -7,8 +7,21 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Blazui.Markdown" Version="0.0.1" />
+    <Content Remove="compilerconfig.json" />
+    <Content Remove="wwwroot\images\logo.svg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="compilerconfig.json" />
+    <None Include="wwwroot\images\logo.svg" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.9.10" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Blazui.Markdown\src\Blazui.Markdown\Blazui.Markdown.csproj" />
   </ItemGroup>
 
 </Project>

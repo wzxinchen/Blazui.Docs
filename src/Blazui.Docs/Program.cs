@@ -22,6 +22,8 @@ namespace Blazui.Docs
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
+                    webBuilder.UseStaticWebAssets()
+                .UseSetting(WebHostDefaults.DetailedErrorsKey, "true");
                     webBuilder.UseStartup<Startup>();
                 });
     }

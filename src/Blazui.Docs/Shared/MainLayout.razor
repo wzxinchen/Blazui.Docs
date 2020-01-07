@@ -1,0 +1,36 @@
+﻿@inherits LayoutComponentBase
+
+<BPopup></BPopup>
+<BLayout>
+    <West>
+        组件菜单
+    </West>
+    <North>
+        <div class="nav">
+            <div class="container">
+                <img src="images/logo.svg" width="146" height="38" />
+                <div class="fill"></div>
+                <BMenu BackgroundColor="transparent" Mode="MenuMode.Horizontal" HoverColor="" TextColor="#fff">
+                    <BMenuItem Route="/">组件</BMenuItem>
+                    <BMenuItem Route="demos">案例</BMenuItem>
+                    <BMenuItem>
+                        <BDropDown Style="display:flex;">
+                            <Trigger>
+                                <span class="el-dropdown-link" style="vertical-align:auto;color:#fff;">
+                                    版本 0.0.6.2  <i class="el-icon-arrow-down el-icon--right" style="color:#fff;"></i>
+                                </span>
+                            </Trigger>
+                            <Items>
+                                <BDropDownItem>0.0.6.2</BDropDownItem>
+                                <BDropDownItem>0.0.6.1</BDropDownItem>
+                            </Items>
+                        </BDropDown>
+                    </BMenuItem>
+                </BMenu>
+            </div>
+        </div>
+    </North>
+    <Center>
+        文档内容
+    </Center>
+</BLayout>
