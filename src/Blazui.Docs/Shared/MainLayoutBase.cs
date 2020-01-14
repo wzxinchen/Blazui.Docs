@@ -22,23 +22,38 @@ namespace Blazui.Docs.Shared
 
         internal ProductModel Product { get; private set; }
 
-        protected VersionModel Version { get; private set; }
+        internal VersionModel Version { get; private set; }
         private string[] paths;
 
         protected List<ProductModel> Products { get; private set; }
 
         protected List<VersionModel> Versions { get; private set; }
+
+        public MainLayoutBase()
+        {
+
+        }
+        protected override async Task OnInitializedAsync()
+        {
+            await base.OnInitializedAsync();
+            paths = new Uri(NavigationManager.Uri).Segments.Where(x => x != "/").Select(x => x.Trim('/')).ToArray();
+            if (paths.Length == 0)
+            {
+                Products = await ProductService.GetProductsAsync();
+                NavigationManager.NavigateTo($"/{Products.FirstOrDefault().NugetPackageName}");
+            }
+        }
         public async Task InitilizePageAsync()
         {
-            paths = new Uri(NavigationManager.Uri).Segments.Where(x => x != "/").ToArray();
+            paths = new Uri(NavigationManager.Uri).Segments.Where(x => x != "/").Select(x => x.Trim('/')).ToArray();
+            Products = await ProductService.GetProductsAsync();
             if (paths.Length == 0)
             {
                 NavigationManager.NavigateTo($"/{Products.FirstOrDefault().NugetPackageName}");
                 return;
             }
-            Products = await ProductService.GetProductsAsync();
 
-            if (IsIntroductionPage(paths))
+            if (IsIntroductionPage(paths) || IsQuickStartPage(paths))
             {
                 Product = Products.FirstOrDefault(x => x.NugetPackageName.Equals(paths[0], StringComparison.CurrentCultureIgnoreCase));
                 Versions = await ProductService.GetVersionsAsync(Product.Id);
@@ -46,12 +61,19 @@ namespace Blazui.Docs.Shared
                 productDropDown.MarkAsRequireRender();
                 layout.MarkAsRequireRender();
                 StateHasChanged();
+                return;
             }
+
+
         }
 
         private bool IsIntroductionPage(string[] paths)
         {
             return paths.Length == 1 || paths.Length == 2;
+        }
+        private bool IsQuickStartPage(string[] paths)
+        {
+            return paths.Length == 3 && paths[2] == "quickstart";
         }
 
         protected bool MatchMenu(string menuRoute)
@@ -60,8 +82,13 @@ namespace Blazui.Docs.Shared
             {
                 return false;
             }
+            var paths = new Uri(NavigationManager.Uri).Segments.Where(x => x != "/").Select(x => x.Trim('/')).ToArray();
             var menuPaths = menuRoute.Split('/');
             if (IsIntroductionPage(paths) && IsIntroductionPage(menuPaths))
+            {
+                return true;
+            }
+            if (IsQuickStartPage(paths) && IsQuickStartPage(menuPaths))
             {
                 return true;
             }
