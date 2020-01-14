@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blazui.Component", "..\Blaz
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blazui.Markdown", "..\Blazui.Markdown\src\Blazui.Markdown\Blazui.Markdown.csproj", "{216BAD6B-30D3-4B7B-A085-C6C803B34D26}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blazui.Docs.Model", "src\Blazui.Docs.Model\Blazui.Docs.Model.csproj", "{27ABE120-F3E3-4E20-B767-C28C8703F421}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blazui.Docs.Model", "src\Blazui.Docs.Model\Blazui.Docs.Model.csproj", "{27ABE120-F3E3-4E20-B767-C28C8703F421}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

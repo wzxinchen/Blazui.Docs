@@ -28,7 +28,7 @@ namespace Blazui.Docs.Shared
         protected List<ProductModel> Products { get; private set; }
 
         protected List<VersionModel> Versions { get; private set; }
-        public async Task InitlizeProductAsync()
+        public async Task InitilizePageAsync()
         {
             paths = new Uri(NavigationManager.Uri).Segments.Where(x => x != "/").ToArray();
             if (paths.Length == 0)
