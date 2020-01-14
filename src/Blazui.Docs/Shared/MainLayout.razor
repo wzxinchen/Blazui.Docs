@@ -1,31 +1,6 @@
-﻿@inherits LayoutComponentBase
-
+﻿@inherits MainLayoutBase
 <BPopup></BPopup>
-<BLayout WestWidth="300">
-    <West>
-        <BMenu Collapse="false">
-            <BMenuItem>
-                <BDropDown Style="text-align:right;">
-                    <Trigger>
-                        <span class="el-dropdown-link">
-                            版本  <i class="el-icon-arrow-down el-icon--right"></i>
-                        </span>
-                    </Trigger>
-                    <Items>
-                        <BDropDownItem>0.0.6.2</BDropDownItem>
-                        <BDropDownItem>0.0.6.1</BDropDownItem>
-                    </Items>
-                </BDropDown>
-            </BMenuItem>
-            <BSubMenu Label="开发指南">
-                <BMenuItem>快速上手</BMenuItem>
-            </BSubMenu>
-            <BSubMenu Label="基础组件">
-                <BMenuItem>Button 按钮</BMenuItem>
-                <BMenuItem>Radio 单选框</BMenuItem>
-            </BSubMenu>
-        </BMenu>
-    </West>
+<BLayout WestWidth="300" @ref="layout">
     <North>
         <div class="nav">
             <div class="container">
@@ -35,16 +10,17 @@
                     <BMenuItem Route="/">组件</BMenuItem>
                     <BMenuItem Route="demos">案例</BMenuItem>
                     <BMenuItem>
-                        <BDropDown Style="display:flex;">
+                        <BDropDown Style="display:flex;" @ref="productDropDown">
                             <Trigger>
                                 <span class="el-dropdown-link" style="vertical-align:auto;color:#fff;">
-                                    Blazui  <i class="el-icon-arrow-down el-icon--right" style="color:#fff;"></i>
+                                    @Product?.NugetPackageName  <i class="el-icon-arrow-down el-icon--right" style="color:#fff;"></i>
                                 </span>
                             </Trigger>
                             <Items>
-                                <BDropDownItem>Blazui</BDropDownItem>
-                                <BDropDownItem>BlazAdmin</BDropDownItem>
-                                <BDropDownItem>Blazui.Markdown</BDropDownItem>
+                                @foreach (var product in Products)
+                                {
+                                    <BDropDownItem>@product.NugetPackageName</BDropDownItem>
+                                }
                             </Items>
                         </BDropDown>
                     </BMenuItem>
@@ -52,7 +28,38 @@
             </div>
         </div>
     </North>
+    <West>
+        <BMenu CanCollapse="false" Match="MatchMenu">
+            <BMenuItem>
+                <BDropDown Style="text-align:right;" EnableAlwaysRender="true">
+                    <Trigger>
+                        <span class="el-dropdown-link">
+                            版本 @Version?.Version  <i class="el-icon-arrow-down el-icon--right"></i>
+                        </span>
+                    </Trigger>
+                    <Items>
+                        @foreach (var version in Versions)
+                        {
+                            <BDropDownItem>@version.Version</BDropDownItem>
+                        }
+                    </Items>
+                </BDropDown>
+            </BMenuItem>
+            <BSubMenu Label="开发指南">
+                <BMenuItem Route="@($"/{Product?.NugetPackageName}")">介绍</BMenuItem>
+                <BMenuItem Route="@($"/{Product?.NugetPackageName}/{Version?.Version}/quickstart")">快速上手</BMenuItem>
+            </BSubMenu>
+            <BSubMenu Label="基础组件">
+                <BMenuItem>Button 按钮</BMenuItem>
+                <BMenuItem>Radio 单选框</BMenuItem>
+            </BSubMenu>
+        </BMenu>
+    </West>
     <Center>
-        <BMarkdown></BMarkdown>
+        <div style="padding:20px;margin-right:100px;">
+            <CascadingValue Value="this">
+                @Body
+            </CascadingValue>
+        </div>
     </Center>
 </BLayout>

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Blazui.Component;
+using Blazui.Docs.Services;
 using Blazui.Markdown;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Components;
@@ -31,6 +32,11 @@ namespace Blazui.Docs
             services.AddServerSideBlazor();
             services.AddBlazuiServices();
             services.AddMarkdown();
+            services.AddHttpClient("product", client =>
+            {
+                client.BaseAddress = new Uri(Environment.GetEnvironmentVariable("ServerUrl") ?? "http://localhost:5000");
+            });
+            services.AddScoped<ProductService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
