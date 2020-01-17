@@ -1,7 +1,7 @@
 ﻿@inherits MainLayoutBase
 <BPopup></BPopup>
 <BLayout WestWidth="382" @ref="layout">
-    <North>
+    @*<North>
         <div class="nav">
             <div class="container">
                 <img src="images/logo.svg" width="146" height="38" />
@@ -27,8 +27,16 @@
                 </BMenu>
             </div>
         </div>
-    </North>
-    <West>
+    </North>*@
+
+    <Center>
+        <div style="padding:20px;margin-right:100px;">
+            <CascadingValue Value="this">
+                @Body
+            </CascadingValue>
+        </div>
+    </Center>
+    @*<West>
         <BMenu CanCollapse="false" Match="MatchMenu">
             <BMenuItem>
                 <BDropDown Style="text-align:right;" EnableAlwaysRender="true">
@@ -54,12 +62,5 @@
                 <BMenuItem>Radio 单选框</BMenuItem>
             </BSubMenu>
         </BMenu>
-    </West>
-    <Center>
-        <div style="padding:20px;margin-right:100px;">
-            <CascadingValue Value="this">
-                @Body
-            </CascadingValue>
-        </div>
-    </Center>
+    </West>*@
 </BLayout>

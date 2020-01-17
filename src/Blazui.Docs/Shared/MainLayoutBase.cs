@@ -33,6 +33,7 @@ namespace Blazui.Docs.Shared
         {
 
         }
+
         protected override async Task OnInitializedAsync()
         {
             await base.OnInitializedAsync();
@@ -58,9 +59,9 @@ namespace Blazui.Docs.Shared
                 Product = Products.FirstOrDefault(x => x.NugetPackageName.Equals(paths[0], StringComparison.CurrentCultureIgnoreCase));
                 Versions = await ProductService.GetVersionsAsync(Product.Id);
                 Version = Versions.FirstOrDefault();
-                productDropDown.MarkAsRequireRender();
-                layout.MarkAsRequireRender();
-                StateHasChanged();
+                //productDropDown.MarkAsRequireRender();
+                //layout.MarkAsRequireRender();
+                //StateHasChanged();
                 return;
             }
 
