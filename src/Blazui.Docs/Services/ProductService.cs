@@ -30,5 +30,10 @@ namespace Blazui.Docs.Services
         {
             return httpClient.GetJsonAsync<List<StepModel>>($"api/products/0/versions/{versionId}/quickstarts");
         }
+
+        public Task<List<ComponentModel>> GetComponentsAsync(int versionId)
+        {
+            return httpClient.GetJsonAsync<List<ComponentModel>>($"api/products/0/versions/{versionId}/components");
+        }
     }
 }

@@ -6,10 +6,12 @@ html body {
   padding: 0;
   display: flex;
   height: 100%;
+  overflow: hidden;
 }
 html body > app {
   display: flex;
   flex: 1;
+  overflow: hidden;
 }
 html body > app div.blaz-layout-west {
   display: flex;
@@ -54,6 +56,5 @@ html body > app div.nav > div.container > ul.el-menu > li > i {
   display: none;
 }
 html body > app div.container {
-  width: 1140px;
-  margin: 0 auto;
+  margin: 0 200px;
 }

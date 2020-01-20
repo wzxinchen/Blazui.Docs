@@ -30,14 +30,14 @@
     </North>
 
     <Center>
-        <div style="padding:20px;margin-right:100px;">
+        <div style="padding:20px;margin-right:100px;height:100%;flex:1;overflow:auto;">
             <CascadingValue Value="this" IsFixed="true">
                 @Body
             </CascadingValue>
         </div>
     </Center>
     <West>
-        <BMenu CanCollapse="false" Match="MatchMenu" @ref="leftMenu">
+        <BMenu CanCollapse="false" Match="MatchMenu" @ref="leftMenu" Style="width:202px;overflow:auto;">
             <BMenuItem>
                 <BDropDown Style="text-align:right;" EnableAlwaysRender="true">
                     <Trigger>
@@ -57,10 +57,15 @@
                 <BMenuItem Route="@($"/{Product?.NugetPackageName}")">介绍</BMenuItem>
                 <BMenuItem Route="@($"/{Product?.NugetPackageName}/{Version?.Version}/quickstart")">快速上手</BMenuItem>
             </BSubMenu>
-            <BSubMenu Label="基础组件">
-                <BMenuItem>Button 按钮</BMenuItem>
-                <BMenuItem>Radio 单选框</BMenuItem>
-            </BSubMenu>
+            @if (Components != null)
+            {
+                <BSubMenu Label="组件">
+                    @foreach (var component in Components)
+                    {
+                        <BMenuItem Route="@($"/{Product?.NugetPackageName}/{Version?.Version}/component/{component?.TagName}")">@component.Name</BMenuItem>
+                    }
+                </BSubMenu>
+            }
         </BMenu>
     </West>
 </BLayout>

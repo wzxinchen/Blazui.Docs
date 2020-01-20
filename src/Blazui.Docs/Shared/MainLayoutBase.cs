@@ -34,6 +34,8 @@ namespace Blazui.Docs.Shared
 
         protected List<ProductModel> Products { get; private set; }
 
+        protected List<ComponentModel> Components { get; private set; }
+
         protected List<VersionModel> Versions { get; private set; }
 
         protected override async Task OnInitializedAsync()
@@ -88,7 +90,9 @@ namespace Blazui.Docs.Shared
                 if (Version == null)
                 {
                     MessageService.Show($"当前产品不存在版本:{paths[0]}");
+                    return;
                 }
+                Components = await ProductService.GetComponentsAsync(Version.Id);
             }
         }
 
@@ -112,12 +116,10 @@ namespace Blazui.Docs.Shared
             var menuPaths = menuRoute.Split('/').Where(x => !string.IsNullOrWhiteSpace(x)).ToArray();
             if (IsIntroductionPage(paths) && IsIntroductionPage(menuPaths))
             {
-
                 return true;
             }
             if (IsQuickStartPage(paths) && IsQuickStartPage(menuPaths))
             {
-
                 return true;
             }
 
