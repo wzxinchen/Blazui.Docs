@@ -19,14 +19,10 @@ namespace Blazui.Docs.Pages
         [Parameter]
         public string Version { get; set; }
 
-        protected override async Task OnInitializedAsync()
+        protected override async Task InitilizePageDataAsync()
         {
-            await base.OnInitializedAsync();
-            await MainLayout.InitilizePageAsync();
             steps = await ProductService.GetQuickStartStepsAsync(MainLayout.Version.Id);
             quickStart = string.Join(Environment.NewLine, steps.Select(x => $"### {x.Title}{Environment.NewLine}{x.Description}"));
-            RequireRender = true;
-            StateHasChanged();
         }
     }
 }

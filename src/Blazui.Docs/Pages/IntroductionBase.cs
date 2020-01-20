@@ -14,14 +14,11 @@ namespace Blazui.Docs.Pages
 
         [Parameter]
         public string Product { get; set; }
-        //protected override async Task OnInitializedAsync()
-        //{
-        //    await base.OnInitializedAsync();
-        //    await MainLayout.InitilizePageAsync();
-        //    introduction = MainLayout.Product.Introduction;
-        //    RequireRender = true;
-        //    //StateHasChanged();
-        //}
 
+        protected override Task InitilizePageDataAsync()
+        {
+            introduction = MainLayout.Product.Introduction;
+            return Task.CompletedTask;
+        }
     }
 }
